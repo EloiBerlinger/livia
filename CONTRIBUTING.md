@@ -14,18 +14,12 @@
 # Livia Functionning
 ## Messages types:
 Livia uses an special code for define message types, there is the list of message types:  
-*Message Format:* `CODE,USERNAME,CONTENT`
-* Chat Message
-    * Code: 000
-    * `000,userName,"This is an simple chat Message"`
-* Private message
-    * Code: 001
-    * `001,fromUser,toUser,"This is an simple chat Message"`
-* Client data connection/register
-    * Code: 002
-    * `002,clientUserName,clientHashedPassword`
-* Server connection (confirmation/informations)
-    * Code: 003
-    * `003,fromUser,toUser,"This is an simple chat Message"`
+*Message Format:* `CODE,USERNAME,CONTENT`  
+The message code type **need to be on 3 digits** !  
 
-The message code type **need to be on 3 digits** !
+| Type Name     |    Code     |    Example     |
+| :------------- | :------------- | :------------- |
+| Chat Message | 000 | `000,userName,"This is an simple chat Message"` |
+| Private message | 001 | `001,fromUser,toUser,"This is an simple chat Message"` |
+| Client data connection/register | 002 | `002,clientUserName,clientHashedPassword` |
+| Server connection (confirmation/informations) | 003 | `003,fromUser,toUser,"This is an simple chat Message"` |
