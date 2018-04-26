@@ -3,7 +3,7 @@
 from modules.client import Client
 import os
 
-print("""\x1b[0;32m
+header = """\x1b[0;32m
            :::        ::::::::::: :::     ::: :::::::::::     :::
           :+:            :+:     :+:     :+:     :+:       :+: :+:
          +:+            +:+     +:+     +:+     +:+      +:+   +:+
@@ -11,7 +11,9 @@ print("""\x1b[0;32m
        +#+            +#+      +#+   +#+      +#+     +#+     +#+
       #+#            #+#       #+#+#+#       #+#     #+#     #+#
      ########## ###########     ###     ########### ###     ###\x1b[0m     Chat system
-""")
+"""
+
+print(header)
 
 if(os.path.getsize("database/client.livia") == 0):
     # If it is the first launching (Check if database/client.livia is empty)
@@ -34,8 +36,9 @@ while(not client.exit):
         if(len(command) == 1):
             print("""
 \x1b[1;31mList of little commands:\x1b[0m
-    \x1b[0;32mClear console\x1b[0m ->  /clear
-    \x1b[0;32mLeave app\x1b[0m     ->  /exit
+    \x1b[0;32mClear console\x1b[0m  ->  /clear
+    \x1b[0;32mLeave app\x1b[0m      ->  /exit
+    \x1b[0;32mDisplay Header\x1b[0m ->  /header
 
 \x1b[1;31mList of Domains:\x1b[0m
     \x1b[0;32mServers management\x1b[0m -> /help servers
@@ -73,18 +76,26 @@ Facultative:
 # Active commands (Not displaying a lot of text)
 
     elif(command[0] == "config"):
-        commandErrorMessage = "Please specify configuration domain, for help use /help config"
+        commandErrorMessage = "Error while using this command, for help use /help config"
         if(len(command) == 1):
             print(commandErrorMessage)
         else:
             pass
 
+    elif(command[0] == "server"):
+        commandErrorMessage = "Error while using this command, for help use /help server"
+
     elif(command[0] == "clear"):
-        print(100*"\n")
+        os.system("clear")
+        # cls for windows
+
+    elif(command[0] == "header"):
+        print(header)
 
     else:
         print("\nUnknow command, type /help\n")
 
 # Closing client:
 print("\nSaving your changes...")
+client.saveClient()
 print("Goodbye !")

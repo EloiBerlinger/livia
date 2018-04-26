@@ -9,11 +9,13 @@ class Client:
     def __init__(self):
         self.exit = False
         self.site = "Livia/Home"
+        self.servers = {}
+        self.bestServers = []
 
     def saveClient(self):
         with open("database/client.livia", "wb") as file:
-            pickleFile = pickle.Pickle(file)
+            pickleFile = pickle.Pickler(file)
             pickleFile.dump(self)
 
-    def serverConnect(self, server):
+    def serverConnect(self, host, port):
         pass
