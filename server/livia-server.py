@@ -2,4 +2,4 @@
 #-*-coding:utf-8-*-
 from modules.server import Server
 
-serverObj = Server()
+server = Server()
