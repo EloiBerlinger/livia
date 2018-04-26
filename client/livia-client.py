@@ -3,6 +3,7 @@
 from modules.client import Client
 from modules.commands.commandProcess import commandProcess
 import os
+import pickle
 
 # Creating Livia client:
 
@@ -31,18 +32,20 @@ if(os.path.getsize("database/client.livia") == 0):
     choose = input("(1 / 2) > ")
 
     if(choose == "1"):
-        client.colorSupporting = True
+        client.clientConfig["colorSupporting"] = True
     elif(choose == "2"):
-        client.colorSupporting = False
+        client.clientConfig["colorSupporting"] = False
         print("WELCOME to your first Livia launch !")
         print("Type /help to know all the commands !", end="\n\n")
     else:
-        client.colorSupporting = False
+        client.clientConfig["colorSupporting"] = False
     print("\x1b[0m", end="")
 
 else:
     # Getting client from class:
-    pass
+    with open("database/client.livia", "rb") as file:
+        fileUnpickle = pickle.Unpickler(file)
+        client = fileUnpickle.load()
 
 
 # Commands:

@@ -4,6 +4,7 @@ from modules.commands.help import *
 from modules.commands.config import *
 from modules.commands.server import *
 from modules.commands.clear import *
+from modules.commands.info import *
 
 def commandProcess(command, client):
 
@@ -21,6 +22,9 @@ def commandProcess(command, client):
 
     elif(command[0] == "clear"):
         clearCmd()
+
+    elif(command[0] == "info"):
+        infoCmd(client)
 
     else:
         print("\nUnknow command, type /help\n")

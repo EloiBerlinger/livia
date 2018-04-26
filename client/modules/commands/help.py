@@ -3,11 +3,12 @@
 
 def helpCmd(command, client):
     if(len(command) == 1):
-        if(client.colorSupporting):
+        if(client.clientConfig["colorSupporting"]):
             print("""
     \x1b[1;31mList of little commands:\x1b[0m
         \x1b[0;32mClear console\x1b[0m  ->  /clear
         \x1b[0;32mLeave app\x1b[0m      ->  /exit
+        \x1b[0;32mGet your info\x1b[0m  ->  /info
 
     \x1b[1;31mList of Domains:\x1b[0m
         \x1b[0;32mServers management\x1b[0m -> /help servers
@@ -19,7 +20,7 @@ def helpCmd(command, client):
     List of little commands:
         Clear console  ->  /clear
         Leave app      ->  /exit
-        Display Header ->  /header
+        Get your info  ->  /info
 
     List of Domains:
         Servers management -> /help servers
@@ -28,7 +29,7 @@ def helpCmd(command, client):
 """)
     else:
         if(command[1] == "servers"):
-            if(client.colorSupporting):
+            if(client.clientConfig["colorSupporting"]):
                 print("""
     \x1b[1;31mServers help:\x1b[0m
 
@@ -51,16 +52,17 @@ def helpCmd(command, client):
 
 """)
         elif(command[1] == "config"):
-            if(client.colorSupporting):
+            if(client.clientConfig["colorSupporting"]):
                 print("""
     \x1b[1;31mClient configuration help:\x1b[0m
 
     Required:
         \x1b[0;32mYour name\x1b[0m     ->  /config name <YourUsername>
         \x1b[0;32mYour Password\x1b[0m ->  /config password <YourPassword>
+        \x1b[0;32mColor support\x1b[0m ->  /config coloredtext <On/Off>
 
     Facultative:
-        \x1b[0;32mYour Email\x1b[0m ->  /config email <yourMail> (Facultative)
+        \x1b[0;32mYour Email\x1b[0m ->  /config email <yourMail>
         \x1b[0;32mIf you accept Private Messages\x1b[0m ->  /config privatemessages <on/off>
 
 """)
@@ -71,6 +73,7 @@ def helpCmd(command, client):
     Required:
         Your name     ->  /config name <YourUsername>
         Your Password ->  /config password <YourPassword>
+        Color support ->  /config color <On/Off>
 
     Facultative:
         Your Email ->  /config email <yourMail> (Facultative)
