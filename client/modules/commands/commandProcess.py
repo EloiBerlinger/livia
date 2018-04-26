@@ -1,9 +1,9 @@
 #!/usr/bin/python
 #-*-coding:utf-8-*-
-from modules.commands.help import help
-from modules.commands.config import config
-from modules.commands.server import server
-from modules.commands.clear import clear
+from modules.commands.help import *
+from modules.commands.config import *
+from modules.commands.server import *
+from modules.commands.clear import *
 
 def commandProcess(command, client):
 
