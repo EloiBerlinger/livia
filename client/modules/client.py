@@ -7,13 +7,14 @@ import pickle
 class Client:
 
     def __init__(self):
+        self.clientConfig = {"colorSupporting": False, "username": "", "password": ""}
         self.exit = False
         self.site = "Livia/Home"
-        self.colorSupporting = False
         self.servers = {}
         self.bestServers = []
 
     def saveClient(self):
+        self.exit = False
         with open("database/client.livia", "wb") as file:
             pickleFile = pickle.Pickler(file)
             pickleFile.dump(self)
