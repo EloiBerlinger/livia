@@ -1,1 +1,4 @@
-client/database/client.livia
+client\database\client.livia
+client\modules\commands\__pycache__
+client\modules\__pycache__
+server\modules\__pycache__
