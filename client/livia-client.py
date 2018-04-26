@@ -1,7 +1,10 @@
 #!/usr/bin/python
 #-*-coding:utf-8-*-
 from modules.client import Client
+from modules.commands.commandProcess import commandProcess
 import os
+
+# Creating Livia client:
 
 header = """\x1b[0;32m
            :::        ::::::::::: :::     ::: :::::::::::     :::
@@ -16,84 +19,39 @@ header = """\x1b[0;32m
 print(header)
 
 if(os.path.getsize("database/client.livia") == 0):
+    client = Client()
+
     # If it is the first launching (Check if database/client.livia is empty)
-     print("    \x1b[1;36mWELCOME\x1b[0m to your first \x1b[0;32mLivia\x1b[0m launch !")
-     print("    Type \x1b[1;31m/help\x1b[0m to know all the commands !", end="\n\n")
+    print("    \x1b[1;36mWELCOME\x1b[0m to your first \x1b[0;32mLivia\x1b[0m launch !")
+    print("    Type \x1b[1;31m/help\x1b[0m to know all the commands !", end="\n\n")
+
+    print("Do you have text coloration on your terminal or things like: \x1b[1;36m")
+    print("1) Yes, i have text coloration and this text is blue !")
+    print("2) No, i have this wierd thing '\x1b[1;36m'")
+    choose = input("(1 / 2) > ")
+
+    if(choose == "1"):
+        client.colorSupporting = True
+    elif(choose == "2"):
+        client.colorSupporting = False
+        print("WELCOME to your first Livia launch !")
+        print("Type /help to know all the commands !", end="\n\n")
+    else:
+        client.colorSupporting = False
+    print("\x1b[0m", end="")
+
+else:
+    # Getting client from class:
+    pass
 
 
-
-# Creating Livia client:
-client = Client()
+# Commands:
 
 while(not client.exit):
     print("----> "+client.site)
     command = input("$ ").lower().replace("/", "").split(" ")
 
-    if(command[0] == "exit"):
-        client.exit = True
-
-    elif(command[0] == "help"):
-        if(len(command) == 1):
-            print("""
-\x1b[1;31mList of little commands:\x1b[0m
-    \x1b[0;32mClear console\x1b[0m  ->  /clear
-    \x1b[0;32mLeave app\x1b[0m      ->  /exit
-    \x1b[0;32mDisplay Header\x1b[0m ->  /header
-
-\x1b[1;31mList of Domains:\x1b[0m
-    \x1b[0;32mServers management\x1b[0m -> /help servers
-    \x1b[0;32mClient configuration\x1b[0m -> /help config
-
-""")
-        else:
-            if(command[1] == "servers"):
-                print("""
-\x1b[1;31mServers help:\x1b[0m
-
-    \x1b[0;32mAdd new server\x1b[0m ->  /server add <host> <name>
-    \x1b[0;32mRemove server\x1b[0m  ->  /server del <name>
-
-    \x1b[0;32mFavorite server add\x1b[0m -> /server fav add <serverName>
-    \x1b[0;32mFavorite server del\x1b[0m -> /server fav del <serverName>
-
-""")
-            elif(command[1] == "config"):
-                print("""
-\x1b[1;31mClient configuration help:\x1b[0m
-
-Required:
-    \x1b[0;32mYour name\x1b[0m     ->  /config name <YourUsername>
-    \x1b[0;32mYour Password\x1b[0m ->  /config password <YourPassword>
-
-Facultative:
-    \x1b[0;32mYour Email\x1b[0m ->  /config email <yourMail> (Facultative)
-    \x1b[0;32mIf you accept Private Messages\x1b[0m ->  /config privatemessages <on/off>
-
-""")
-            else:
-                print("This domain dosen't exist, for know all domains, type /help !")
-
-# Active commands (Not displaying a lot of text)
-
-    elif(command[0] == "config"):
-        commandErrorMessage = "Error while using this command, for help use /help config"
-        if(len(command) == 1):
-            print(commandErrorMessage)
-        else:
-            pass
-
-    elif(command[0] == "server"):
-        commandErrorMessage = "Error while using this command, for help use /help server"
-
-    elif(command[0] == "clear"):
-        os.system("clear")
-        # cls for windows
-
-    elif(command[0] == "header"):
-        print(header)
-
-    else:
-        print("\nUnknow command, type /help\n")
+    commandProcess(command, client)
 
 # Closing client:
 print("\nSaving your changes...")

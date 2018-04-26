@@ -9,6 +9,7 @@ class Client:
     def __init__(self):
         self.exit = False
         self.site = "Livia/Home"
+        self.colorSupporting = False
         self.servers = {}
         self.bestServers = []
 
