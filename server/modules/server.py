@@ -10,33 +10,35 @@ class Server:
         self.users = list()
         self.host = str()
         self.state = False
+        self.serverConfig = {}
         self.serverSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
         # Getting server configuration:
         with open("serverConfig.conf", "r") as configFile:
-
-            extractedValues = {}
-
+            
             for l in configFile:
                 if(l[0] != "#"):
                     # If the first caracter of the line is not #:
                     def extractValue(key, line):
                         final = ""
+                        count = 0
                         keyLength = len(key+" = ")
-                        lineLength = len(l)
+                        lineLength = len(line)-1 # -1 for the line return
+
                         for c in line:
-                            charIndex = line.index(c)
-                            if(charIndex in range(keyLength, lineLength)):
+                            if(count in range(keyLength, lineLength)):
                                 final += c
+                            count += 1
 
                         return final
 
+                    # There is all the server extraction values
                     if("serverName" in l):
-                        extractedValues["serverName"] = extractValue(l, "serverName")
-                    elif("serverPort" in l):
-                        extractedValues["serverPort"] = extractValue(l, "serverPort")
-
-        print(extractedValues)
+                        self.serverConfig["serverName"] = extractValue("serverName", l)
+                    if("serverPort" in l):
+                        self.serverConfig["serverPort"] = extractValue("serverPort", l)
+                    if("maxClients" in l):
+                        self.serverConfig["maxClients"] = extractValue("maxClients", l)
 
     def start():
         pass
