@@ -21,6 +21,7 @@ print(header)
 
 if(os.path.getsize("database/client.livia") == 0):
     client = Client()
+    client.log("ClientCreation", "Created new client")
 
     # If it is the first launching (Check if database/client.livia is empty)
     print("    \x1b[1;36mWELCOME\x1b[0m to your first \x1b[0;32mLivia\x1b[0m launch !")
@@ -33,23 +34,27 @@ if(os.path.getsize("database/client.livia") == 0):
 
     if(choose == "1"):
         client.clientConfig["colorSupporting"] = True
+        client.log("Configuration", "Set text coloration ON")
     elif(choose == "2"):
         client.clientConfig["colorSupporting"] = False
         print("WELCOME to your first Livia launch !")
         print("Type /help to know all the commands !", end="\n\n")
+        client.log("Configuration", "Set text coloration OFF")
     else:
         client.clientConfig["colorSupporting"] = False
     print("\x1b[0m", end="")
 
+
 else:
     # Getting client from class:
+    client = object()
     with open("database/client.livia", "rb") as file:
         fileUnpickle = pickle.Unpickler(file)
         client = fileUnpickle.load()
+    client.log("Initialisation", "Sucessfull restored last client state")
 
 
 # Commands:
-
 while(not client.exit):
     print("----> "+client.site)
     command = input("$ ").lower().replace("/", "").split(" ")
