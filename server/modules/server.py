@@ -15,7 +15,7 @@ class Server:
 
         # Getting server configuration:
         with open("serverConfig.conf", "r") as configFile:
-            
+
             for l in configFile:
                 if(l[0] != "#"):
                     # If the first caracter of the line is not #:
@@ -39,6 +39,8 @@ class Server:
                         self.serverConfig["serverPort"] = extractValue("serverPort", l)
                     if("maxClients" in l):
                         self.serverConfig["maxClients"] = extractValue("maxClients", l)
+                    if("welcomeMessage" in l):
+                        self.serverConfig["welcomeMessage"] = extractValue("welcomeMessage", l)
 
     def start():
         pass
