@@ -1,11 +1,12 @@
 #!/usr/bin/python
 #-*-coding:utf-8-*-
 # Livia server class file
-from utils.clientConfig import *
-from utils.clientProcess import *
-from user import *
+from modules.utils.clientConfig import *
+from modules.utils.clientProcess import *
+from modules.user import *
 import socket
 import select
+import time
 
 class Server:
     def __init__(self):
@@ -62,14 +63,16 @@ class Server:
                 clientConnection, connectionData = connection.accept()
                 self.users.append(User(clientConfig(clientConnection, connectionData)))
 
+            """
             toReadClient = []
             try:
                 toReadClient, wlist, xlist = select.select(self.users.socket, [], [], 0.05)
             except select.error:
                 pass
             else:
-                for client un self.users:
+                for client in self.users:
                     clientProcess(client)
+            """
 
     def stop(self):
         print("Stopping server...")

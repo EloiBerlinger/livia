@@ -3,4 +3,4 @@
 
 # s = Socket | sData = Socket informations
 def clientConfig(s, sData):
-    
+    pass
