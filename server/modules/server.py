@@ -1,6 +1,9 @@
 #!/usr/bin/python
 #-*-coding:utf-8-*-
 # Livia server class file
+from utils.clientConfig import *
+from utils.clientProcess import *
+from user import *
 import socket
 import select
 
@@ -36,11 +39,50 @@ class Server:
                     if("serverName" in l):
                         self.serverConfig["serverName"] = extractValue("serverName", l)
                     if("serverPort" in l):
-                        self.serverConfig["serverPort"] = extractValue("serverPort", l)
+                        self.serverConfig["serverPort"] = int(extractValue("serverPort", l))
                     if("maxClients" in l):
                         self.serverConfig["maxClients"] = extractValue("maxClients", l)
                     if("welcomeMessage" in l):
                         self.serverConfig["welcomeMessage"] = extractValue("welcomeMessage", l)
 
-    def start():
-        pass
+    def start(self):
+        print("Starting server...")
+        self.log("serverStarting", "Starting server")
+
+        self.serverSocket.bind(("", self.serverConfig["serverPort"]))
+        self.serverSocket.listen(5)
+        print("Server listening on "+str(self.serverConfig["serverPort"]))
+        self.log("ServerStarting", "Server listening on "+str(self.serverConfig["serverPort"]))
+
+        self.state = True
+        while(self.state):
+            askedConnections, wlist, xlist = select.select([self.serverSocket], [], [], 0.05)
+
+            for connection in askedConnections:
+                clientConnection, connectionData = connection.accept()
+                self.users.append(User(clientConfig(clientConnection, connectionData)))
+
+            toReadClient = []
+            try:
+                toReadClient, wlist, xlist = select.select(self.users.socket, [], [], 0.05)
+            except select.error:
+                pass
+            else:
+                for client un self.users:
+                    clientProcess(client)
+
+    def stop(self):
+        print("Stopping server...")
+        self.log("StoppingServer", "Stopping server...")
+
+        for c in self.users:
+            c.socket.close()
+            print("Closed connection with ...")
+            self.log("ClosedConnection", "Closed connection with...")
+
+        self.serverSocket.close()
+
+    def log(self, type, content):
+        timePrefix = "{"+time.strftime("%d/%b/%Y:%H-%M-%S")+"}"
+        with open("database/serverLogs.txt", "a") as logsFile:
+            logsFile.write(timePrefix+" ["+type+"] "+content+"\n")
