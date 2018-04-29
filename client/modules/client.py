@@ -9,6 +9,7 @@ class Client:
 
     def __init__(self):
         self.clientConfig = {"colorSupporting": False, "username": "", "password": ""}
+        self.clientSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.exit = False
         self.site = "Livia/Home"
         self.servers = {}
@@ -25,5 +26,23 @@ class Client:
         with open("database/clientLogs.txt", "a") as logsFile:
             logsFile.write(timePrefix+" ["+type+"] "+content+"\n")
 
-    def serverConnect(self, host, port):
+    def serverConnect(self, host, port, serverName=""):
+        try:
+            self.clientSocket.connect((host, port))
+            state = True
+            return state
+        except:
+            state = False
+            return state
+
+        if(state):
+            if(serverName == ""):
+                self.site += "/"+host
+            else:
+                self.site += "/"+serverName
+
+    def sendCommand():
+        pass
+
+    def sendChat():
         pass

@@ -1,0 +1,6 @@
+{29/Apr/2018:05-41-31} [ClientCreation] Created new client
+{29/Apr/2018:05-41-33} [Configuration] Set text coloration ON
+{29/Apr/2018:05-41-39} [Initialisation] Sucessfull restored last client state
+{29/Apr/2018:06-29-30} [Initialisation] Sucessfull restored last client state
+{29/Apr/2018:06-30-02} [Initialisation] Sucessfull restored last client state
+{29/Apr/2018:06-31-10} [Initialisation] Sucessfull restored last client state

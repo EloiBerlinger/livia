@@ -57,9 +57,20 @@ else:
 # Commands:
 while(not client.exit):
     print("----> "+client.site)
-    command = input("$ ").lower().replace("/", "").split(" ")
+    userInput = input("$ ")
 
-    commandProcess(command, client)
+    if(userInput[0] == "/"):
+        if(userInput[0]+userInput[1] == "//"):
+            # Server command
+            userInput = userInput.lower().replace("/", "").split(" ")
+            client.serverCommand(userInput)
+        else:
+            # Local command
+            userInput = userInput.lower().replace("/", "").split(" ")
+            commandProcess(userInput, client)
+
+    else:
+        client.sendChat(userInput)
 
 # Closing client:
 print("\nSaving your changes...")
