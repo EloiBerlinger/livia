@@ -27,6 +27,7 @@ class Client:
             logsFile.write(timePrefix+" ["+type+"] "+content+"\n")
 
     def serverConnect(self, host, port, serverName=""):
+        print("Asked connection to: "+host+":"+str(port))
         try:
             self.clientSocket.connect((host, port))
             state = True
@@ -40,6 +41,10 @@ class Client:
                 self.site += "/"+host
             else:
                 self.site += "/"+serverName
+
+            print("Sending client configuration...")
+            clientConfig = "002,"+self.clientConfig["username"]+","+self.clientConfig["password"]
+            self.clientSocket.send(clientConfig.encode(clientConfig))
 
     def sendCommand():
         pass

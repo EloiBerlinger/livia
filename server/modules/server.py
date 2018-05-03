@@ -61,7 +61,34 @@ class Server:
 
             for connection in askedConnections:
                 clientConnection, connectionData = connection.accept()
-                self.users.append(User(clientConfig(clientConnection, connectionData)))
+                print("New connection from "+str(connectionData))
+
+                # Client configuration:
+                recevedConfiguration = False
+                try:
+                    clientConfig = clientConnection.recv(1024)
+                    recevedConfiguration = True
+                except:
+                    print("Client configuration error for "+connectionData)
+                    clientConnection.close()
+
+                if(recevedConfiguration):
+                    # Extract client informations
+                    clientConfig = clientConfig.decode()
+                    clientConfig = clientConfig.split(",")
+                    if(clientConfig[0] == "002"):
+                        # Check message type
+                        try:
+                            userPseudo = clientConfig[1]
+                            userPassword = clientConfig[2]
+
+                            self.users.append(User(clientConfig(clientConnection, connectionData, userPseudo, userPassword)))
+                        except:
+                            print("Error while getting user pseudo and user password !")
+
+                    else:
+                        print("Client configuration error, message type error !")
+
 
             """
             toReadClient = []
