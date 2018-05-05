@@ -12,7 +12,7 @@ def helpCmd(command, client):
         \x1b[0;32mConnect to server\x1b[0m -> /connect <serverName>
 
     \x1b[1;31mList of Domains:\x1b[0m
-        \x1b[0;32mServers management\x1b[0m -> /help servers
+        \x1b[0;32mServers management\x1b[0m -> /help server
         \x1b[0;32mClient configuration\x1b[0m -> /help config
 
 """)

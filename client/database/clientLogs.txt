@@ -1,0 +1,20 @@
+{29/Apr/2018:05-41-31} [ClientCreation] Created new client
+{29/Apr/2018:05-41-33} [Configuration] Set text coloration ON
+{29/Apr/2018:05-41-39} [Initialisation] Sucessfull restored last client state
+{29/Apr/2018:06-29-30} [Initialisation] Sucessfull restored last client state
+{29/Apr/2018:06-30-02} [Initialisation] Sucessfull restored last client state
+{29/Apr/2018:06-31-10} [Initialisation] Sucessfull restored last client state
+{03/May/2018:10-30-19} [Initialisation] Sucessfull restored last client state
+{03/May/2018:10-32-18} [Initialisation] Sucessfull restored last client state
+{03/May/2018:10-34-59} [Initialisation] Sucessfull restored last client state
+{03/May/2018:10-38-16} [Initialisation] Sucessfull restored last client state
+{03/May/2018:10-40-04} [Initialisation] Sucessfull restored last client state
+{03/May/2018:10-42-53} [Initialisation] Sucessfull restored last client state
+{03/May/2018:10-43-01} [Initialisation] Sucessfull restored last client state
+{03/May/2018:10-43-33} [Initialisation] Sucessfull restored last client state
+{03/May/2018:10-44-25} [Initialisation] Sucessfull restored last client state
+{03/May/2018:10-44-36} [Initialisation] Sucessfull restored last client state
+{03/May/2018:10-45-01} [Initialisation] Sucessfull restored last client state
+{03/May/2018:10-45-17} [Initialisation] Sucessfull restored last client state
+{03/May/2018:11-11-21} [Initialisation] Sucessfull restored last client state
+{03/May/2018:11-14-26} [Initialisation] Sucessfull restored last client state

@@ -9,6 +9,7 @@ def configCmd(command, client):
         print(commandErrorMessage)
     else:
         if(command[1] == "name"):
+            # Configure username
             if(len(command) == 3):
                 # Checking username
                 userPseudo = command[2]
@@ -34,6 +35,7 @@ def configCmd(command, client):
                 print("If you placed spaces on your username, you can't !")
 
         elif(command[1] == "color"):
+            # Enable or disable client text coloration
             if(len(command) == 3):
                 if(command[2].lower() == "on"):
                     client.clientConfig["colorSupporting"] = True
@@ -47,6 +49,7 @@ def configCmd(command, client):
                 print(commandErrorMessage)
 
         elif(command[1] == "password"):
+            # Client password configuration
             if(len(command) >= 2):
                 print("Please enter your password, it is recommended to use a strong password !")
                 client.clientConfig["password"] = sha1(getpass().encode()).hexdigest()
