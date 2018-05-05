@@ -12,6 +12,9 @@ def connectCmd(command, client):
         host = input("Server host > ")
         port = input("Server port (Keep empty for use default port) > ")
 
+        if(port == ""):
+            port = 14785
+
         client.serverConnect(host, port)
 
     elif(len(command) == 2):
